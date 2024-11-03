@@ -47,8 +47,16 @@ examples = [
 def fruit_name_score(target: dict, output: dict) -> dict:
     return {'correct': target['fruit'] == output ['fruit']}
 
+def fake_llm_call(sentence: str) -> bool:
+    return True
+
 evaluation= weave.Evaluation(
     name='fruit_eval',
     dataset=examples, scorers=[MultiTaskBinaryClassificationF1(class_names=["fruit", "color", "flavor"]), fruit_name_score],
 )
 print(asyncio.run(evaluation.evaluate(model)))
+
+
+
+
+

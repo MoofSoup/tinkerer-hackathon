@@ -5,7 +5,7 @@ import weave
 def hello_world(str) -> str:
     return "hello world!"
 
-def hello_openai(prompt:str) -> str:
+def prompt_openai(prompt:str) -> str:
     load_dotenv('.env')
     client = OpenAI()
     completion = client.chat.completions.create(
@@ -17,6 +17,10 @@ def hello_openai(prompt:str) -> str:
     )
     return completion.choices[0].message.content
 
+async def prompt_gemini():
+    return True
+
 if __name__ == '__main__':
     val = hello_openai("the game is about chickens, what should I do?")
     print(val)
+
