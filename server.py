@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from check_if_poisoned import hello_world, hello_openai
+from check_if_poisoned import hello_world, prompt_openai, prompt_gemini
 
 app = Flask(__name__)
 
@@ -7,7 +7,8 @@ app = Flask(__name__)
 def is_poisoned():
     data = request.get_json()
     text = data.get('text', '')
-    val = hello_openai(text)
+    val = prompt_openai(text)
+    # is_poisoned = bool(response.get('final_evaluation'))
     return jsonify({"is_poisoned": val})
 
 

@@ -23,6 +23,9 @@ class ExtractFruitsModel(weave.Model):
             raise ValueError("no response from model")
         parsed= json.loads(result)
         return parsed
+    def fake_llm_call(sentence: str) -> bool:
+    # call an llm
+        return True
 
 weave.init('intro-example')
 
@@ -46,9 +49,6 @@ examples = [
 @weave.op()
 def fruit_name_score(target: dict, output: dict) -> dict:
     return {'correct': target['fruit'] == output ['fruit']}
-
-def fake_llm_call(sentence: str) -> bool:
-    return True
 
 evaluation= weave.Evaluation(
     name='fruit_eval',

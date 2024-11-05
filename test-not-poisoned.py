@@ -1,4 +1,5 @@
-from check_if_poisoned import prompt_openai
+from check_if_poisoned import prompt_openai, prompt_gemini
+from pprint import pprint
 
 def test_prompt_not_poisoned():
     # The prompt text that should be evaluated
@@ -7,6 +8,8 @@ def test_prompt_not_poisoned():
     # Get response from OpenAI
     response = prompt_openai(prompt)
     
+    
+    # pprint(response)
     # Extract and convert final_evaluation to bool
     is_poisoned = bool(response.get('final_evaluation'))
     
